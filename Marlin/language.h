@@ -8,14 +8,6 @@
 
 // Languages
 // 1  English
-// 2  Polish
-// 3  French	(awaiting translation!)
-// 4  German
-// 5  Spanish
-// 6  Russian
-// 7  Italian
-// 8  Portuguese
-// 9  Finnish
 
 #ifndef LANGUAGE_CHOICE
 #define LANGUAGE_CHOICE 1  // Pick your language from the list above
