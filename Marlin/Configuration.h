@@ -321,13 +321,13 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 //#define EEPROM_CHITCHAT
 
 // Preheat Constants
-#define PLA_PREHEAT_HOTEND_TEMP 240 
-#define PLA_PREHEAT_HPB_TEMP 0    // Set to 0 since we don't have a bed
-#define PLA_PREHEAT_FAN_SPEED 0   // Set to 0 since we don't have a fan
+#define PET_CLEAR_PREHEAT_HOTEND_TEMP 255 
+#define PET_CLEAR_PREHEAT_HPB_TEMP 0    // Set to 0 since we don't have a bed
+#define PET_CLEAR_PREHEAT_FAN_SPEED 0   // Set to 0 since we don't have a fan
 
-#define ABS_PREHEAT_HOTEND_TEMP 240
-#define ABS_PREHEAT_HPB_TEMP 0    // Set to 0 since we don't have a bed
-#define ABS_PREHEAT_FAN_SPEED 0   // Set to 0 since we don't have a fan
+#define PET_GREEN_PREHEAT_HOTEND_TEMP 245
+#define PET_GREEN_PREHEAT_HPB_TEMP 0    // Set to 0 since we don't have a bed
+#define PET_GREEN_PREHEAT_FAN_SPEED 0   // Set to 0 since we don't have a fan
 
 //LCD and SD support
 //#define ULTRA_LCD  //general lcd support, also 16x2

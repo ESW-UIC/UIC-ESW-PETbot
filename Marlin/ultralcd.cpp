@@ -9,11 +9,11 @@
 #include "ConfigurationStore.h"
 
 /* Configuration settings */
-int plaPreheatHotendTemp;
-int plaPreheatHPBTemp;
-int plaPreheatFanSpeed;
+int petClearPreheatHotendTemp;
+int petClearPreheatHPBT;
+int petClearPreheatFanSpeed;
 
-int absPreheatHotendTemp;
+int petGreenPreheatHotendTemp;
 int absPreheatHPBTemp;
 int absPreheatFanSpeed;
 /* !Configuration settings */
@@ -280,20 +280,20 @@ static void lcd_autostart_sd()
 
 void lcd_preheat_pla()
 {
-    setTargetHotend0(plaPreheatHotendTemp);
-    setTargetHotend1(plaPreheatHotendTemp);
-    setTargetHotend2(plaPreheatHotendTemp);
-    setTargetBed(plaPreheatHPBTemp);
-    fanSpeed = plaPreheatFanSpeed;
+    setTargetHotend0(petClearPreheatHotendTemp);
+    setTargetHotend1(petClearPreheatHotendTemp);
+    setTargetHotend2(petClearPreheatHotendTemp);
+    setTargetBed(petClearPreheatHPBT);
+    fanSpeed = petClearPreheatFanSpeed;
     lcd_return_to_status();
     setWatch(); // heater sanity check timer
 }
 
 void lcd_preheat_abs()
 {
-    setTargetHotend0(absPreheatHotendTemp);
-    setTargetHotend1(absPreheatHotendTemp);
-    setTargetHotend2(absPreheatHotendTemp);
+    setTargetHotend0(petGreenPreheatHotendTemp);
+    setTargetHotend1(petGreenPreheatHotendTemp);
+    setTargetHotend2(petGreenPreheatHotendTemp);
     setTargetBed(absPreheatHPBTemp);
     fanSpeed = absPreheatFanSpeed;
     lcd_return_to_status();
@@ -342,7 +342,7 @@ static void lcd_prepare_menu()
     MENU_ITEM(gcode, MSG_DISABLE_STEPPERS, PSTR("M84"));
     MENU_ITEM(gcode, MSG_AUTO_HOME, PSTR("G28"));
     //MENU_ITEM(gcode, MSG_SET_ORIGIN, PSTR("G92 X0 Y0 Z0"));
-    MENU_ITEM(function, MSG_PREHEAT_PLA, lcd_preheat_pla);
+    MENU_ITEM(function, MSG_PREHEAT_PET, lcd_preheat_pla);
     MENU_ITEM(function, MSG_PREHEAT_ABS, lcd_preheat_abs);
     MENU_ITEM(function, MSG_COOLDOWN, lcd_cooldown);
     MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
@@ -537,7 +537,7 @@ static void lcd_control_temperature_menu()
     MENU_ITEM_EDIT(float3, MSG_PID_C, &Kc, 1, 9990);
 # endif//PID_ADD_EXTRUSION_RATE
 #endif//PIDTEMP
-    MENU_ITEM(submenu, MSG_PREHEAT_PLA_SETTINGS, lcd_control_temperature_preheat_pla_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_PET_SETTINGS, lcd_control_temperature_preheat_pla_settings_menu);
     MENU_ITEM(submenu, MSG_PREHEAT_ABS_SETTINGS, lcd_control_temperature_preheat_abs_settings_menu);
     END_MENU();
 }
@@ -546,10 +546,10 @@ static void lcd_control_temperature_preheat_pla_settings_menu()
 {
     START_MENU();
     MENU_ITEM(back, MSG_TEMPERATURE, lcd_control_temperature_menu);
-    MENU_ITEM_EDIT(int3, MSG_FAN_SPEED, &plaPreheatFanSpeed, 0, 255);
-    MENU_ITEM_EDIT(int3, MSG_NOZZLE, &plaPreheatHotendTemp, 0, HEATER_0_MAXTEMP - 15);
+    MENU_ITEM_EDIT(int3, MSG_FAN_SPEED, &petClearPreheatFanSpeed, 0, 255);
+    MENU_ITEM_EDIT(int3, MSG_NOZZLE, &petClearPreheatHotendTemp, 0, HEATER_0_MAXTEMP - 15);
 #if TEMP_SENSOR_BED != 0
-    MENU_ITEM_EDIT(int3, MSG_BED, &plaPreheatHPBTemp, 0, BED_MAXTEMP - 15);
+    MENU_ITEM_EDIT(int3, MSG_BED, &petClearPreheatHPBT, 0, BED_MAXTEMP - 15);
 #endif
 #ifdef EEPROM_SETTINGS
     MENU_ITEM(function, MSG_STORE_EPROM, Config_StoreSettings);
@@ -562,7 +562,7 @@ static void lcd_control_temperature_preheat_abs_settings_menu()
     START_MENU();
     MENU_ITEM(back, MSG_TEMPERATURE, lcd_control_temperature_menu);
     MENU_ITEM_EDIT(int3, MSG_FAN_SPEED, &absPreheatFanSpeed, 0, 255);
-    MENU_ITEM_EDIT(int3, MSG_NOZZLE, &absPreheatHotendTemp, 0, HEATER_0_MAXTEMP - 15);
+    MENU_ITEM_EDIT(int3, MSG_NOZZLE, &petGreenPreheatHotendTemp, 0, HEATER_0_MAXTEMP - 15);
 #if TEMP_SENSOR_BED != 0
     MENU_ITEM_EDIT(int3, MSG_BED, &absPreheatHPBTemp, 0, BED_MAXTEMP - 15);
 #endif

@@ -26,11 +26,11 @@
   FORCE_INLINE void lcd_buttons_update() {}
   #endif
 
-  extern int plaPreheatHotendTemp;
-  extern int plaPreheatHPBTemp;
-  extern int plaPreheatFanSpeed;
+  extern int petClearPreheatHotendTemp;
+  extern int petClearPreheatHPBT;
+  extern int petClearPreheatFanSpeed;
 
-  extern int absPreheatHotendTemp;
+  extern int petGreenPreheatHotendTemp;
   extern int absPreheatHPBTemp;
   extern int absPreheatFanSpeed;
     
