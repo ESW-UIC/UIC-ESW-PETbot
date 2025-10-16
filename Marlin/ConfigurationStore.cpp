@@ -58,13 +58,13 @@ void Config_StoreSettings()
   EEPROM_WRITE_VAR(i,max_e_jerk);
   EEPROM_WRITE_VAR(i,add_homeing);
   #ifndef ULTIPANEL
-  int plaPreheatHotendTemp = PLA_PREHEAT_HOTEND_TEMP, plaPreheatHPBTemp = PLA_PREHEAT_HPB_TEMP, plaPreheatFanSpeed = PLA_PREHEAT_FAN_SPEED;
-  int absPreheatHotendTemp = ABS_PREHEAT_HOTEND_TEMP, absPreheatHPBTemp = ABS_PREHEAT_HPB_TEMP, absPreheatFanSpeed = ABS_PREHEAT_FAN_SPEED;
+  int petClearPreheatHotendTemp = PET_CLEAR_PREHEAT_HOTEND_TEMP, petClearPreheatHPBT = PET_CLEAR_PREHEAT_HPB_TEMP, petClearPreheatFanSpeed = PET_CLEAR_PREHEAT_FAN_SPEED;
+  int petGreenPreheatHotendTemp = PET_GREEN_PREHEAT_HOTEND_TEMP, absPreheatHPBTemp = PET_GREEN_PREHEAT_HPB_TEMP, absPreheatFanSpeed = PET_GREEN_PREHEAT_FAN_SPEED;
   #endif
-  EEPROM_WRITE_VAR(i,plaPreheatHotendTemp);
-  EEPROM_WRITE_VAR(i,plaPreheatHPBTemp);
-  EEPROM_WRITE_VAR(i,plaPreheatFanSpeed);
-  EEPROM_WRITE_VAR(i,absPreheatHotendTemp);
+  EEPROM_WRITE_VAR(i,petClearPreheatHotendTemp);
+  EEPROM_WRITE_VAR(i,petClearPreheatHPBT);
+  EEPROM_WRITE_VAR(i,petClearPreheatFanSpeed);
+  EEPROM_WRITE_VAR(i,petGreenPreheatHotendTemp);
   EEPROM_WRITE_VAR(i,absPreheatHPBTemp);
   EEPROM_WRITE_VAR(i,absPreheatFanSpeed);
   #ifdef PIDTEMP
@@ -182,13 +182,13 @@ void Config_RetrieveSettings()
         EEPROM_READ_VAR(i,max_e_jerk);
         EEPROM_READ_VAR(i,add_homeing);
         #ifndef ULTIPANEL
-        int plaPreheatHotendTemp, plaPreheatHPBTemp, plaPreheatFanSpeed;
-        int absPreheatHotendTemp, absPreheatHPBTemp, absPreheatFanSpeed;
+        int petClearPreheatHotendTemp, petClearPreheatHPBT, petClearPreheatFanSpeed;
+        int petGreenPreheatHotendTemp, absPreheatHPBTemp, absPreheatFanSpeed;
         #endif
-        EEPROM_READ_VAR(i,plaPreheatHotendTemp);
-        EEPROM_READ_VAR(i,plaPreheatHPBTemp);
-        EEPROM_READ_VAR(i,plaPreheatFanSpeed);
-        EEPROM_READ_VAR(i,absPreheatHotendTemp);
+        EEPROM_READ_VAR(i,petClearPreheatHotendTemp);
+        EEPROM_READ_VAR(i,petClearPreheatHPBT);
+        EEPROM_READ_VAR(i,petClearPreheatFanSpeed);
+        EEPROM_READ_VAR(i,petGreenPreheatHotendTemp);
         EEPROM_READ_VAR(i,absPreheatHPBTemp);
         EEPROM_READ_VAR(i,absPreheatFanSpeed);
         #ifndef PIDTEMP
@@ -237,12 +237,12 @@ void Config_ResetDefault()
     max_e_jerk=DEFAULT_EJERK;
     add_homeing[0] = add_homeing[1] = add_homeing[2] = 0;
 #ifdef ULTIPANEL
-    plaPreheatHotendTemp = PLA_PREHEAT_HOTEND_TEMP;
-    plaPreheatHPBTemp = PLA_PREHEAT_HPB_TEMP;
-    plaPreheatFanSpeed = PLA_PREHEAT_FAN_SPEED;
-    absPreheatHotendTemp = ABS_PREHEAT_HOTEND_TEMP;
-    absPreheatHPBTemp = ABS_PREHEAT_HPB_TEMP;
-    absPreheatFanSpeed = ABS_PREHEAT_FAN_SPEED;
+    petClearPreheatHotendTemp = PET_CLEAR_PREHEAT_HOTEND_TEMP;
+    petClearPreheatHPBT = PET_CLEAR_PREHEAT_HPB_TEMP;
+    petClearPreheatFanSpeed = PET_CLEAR_PREHEAT_FAN_SPEED;
+    petGreenPreheatHotendTemp = PET_GREEN_PREHEAT_HOTEND_TEMP;
+    absPreheatHPBTemp = PET_GREEN_PREHEAT_HPB_TEMP;
+    absPreheatFanSpeed = PET_GREEN_PREHEAT_FAN_SPEED;
 #endif
 #ifdef PIDTEMP
     Kp = DEFAULT_Kp;
