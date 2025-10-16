@@ -30,7 +30,7 @@
 	#define MACHINE_NAME "Rumba"
 	#define FIRMWARE_URL "https://github.com/ErikZalm/Marlin/"
 #else
-	#define MACHINE_NAME "Mendel"
+	#define MACHINE_NAME "ESW PETbot"
 	#define FIRMWARE_URL "http://www.mendel-parts.com"
 #endif
 
