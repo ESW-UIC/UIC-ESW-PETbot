@@ -44,8 +44,8 @@ static void lcd_prepare_menu();
 static void lcd_move_menu();
 static void lcd_control_menu();
 static void lcd_control_temperature_menu();
-static void lcd_control_temperature_preheat_pla_settings_menu();
-static void lcd_control_temperature_preheat_abs_settings_menu();
+static void lcd_control_temperature_preheat_pet_clear_settings_menu();
+static void lcd_control_temperature_preheat_pet_green_settings_menu();
 static void lcd_control_motion_menu();
 static void lcd_control_retract_menu();
 static void lcd_sdcard_menu();
@@ -342,8 +342,8 @@ static void lcd_prepare_menu()
     MENU_ITEM(gcode, MSG_DISABLE_STEPPERS, PSTR("M84"));
     MENU_ITEM(gcode, MSG_AUTO_HOME, PSTR("G28"));
     //MENU_ITEM(gcode, MSG_SET_ORIGIN, PSTR("G92 X0 Y0 Z0"));
-    MENU_ITEM(function, MSG_PREHEAT_PET, lcd_preheat_pla);
-    MENU_ITEM(function, MSG_PREHEAT_ABS, lcd_preheat_abs);
+    MENU_ITEM(function, MSG_PREHEAT_PET_CLEAR, lcd_preheat_pla);
+    MENU_ITEM(function, MSG_PREHEAT_PET_GREEN, lcd_preheat_abs);
     MENU_ITEM(function, MSG_COOLDOWN, lcd_cooldown);
     MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
     END_MENU();
@@ -537,12 +537,12 @@ static void lcd_control_temperature_menu()
     MENU_ITEM_EDIT(float3, MSG_PID_C, &Kc, 1, 9990);
 # endif//PID_ADD_EXTRUSION_RATE
 #endif//PIDTEMP
-    MENU_ITEM(submenu, MSG_PREHEAT_PET_SETTINGS, lcd_control_temperature_preheat_pla_settings_menu);
-    MENU_ITEM(submenu, MSG_PREHEAT_ABS_SETTINGS, lcd_control_temperature_preheat_abs_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_PET_CLEAR_SETTINGS, lcd_control_temperature_preheat_pet_clear_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_PET_GREEN_SETTINGS, lcd_control_temperature_preheat_pet_green_settings_menu);
     END_MENU();
 }
 
-static void lcd_control_temperature_preheat_pla_settings_menu()
+static void lcd_control_temperature_preheat_pet_clear_settings_menu()
 {
     START_MENU();
     MENU_ITEM(back, MSG_TEMPERATURE, lcd_control_temperature_menu);
@@ -557,7 +557,7 @@ static void lcd_control_temperature_preheat_pla_settings_menu()
     END_MENU();
 }
 
-static void lcd_control_temperature_preheat_abs_settings_menu()
+static void lcd_control_temperature_preheat_pet_green_settings_menu()
 {
     START_MENU();
     MENU_ITEM(back, MSG_TEMPERATURE, lcd_control_temperature_menu);
