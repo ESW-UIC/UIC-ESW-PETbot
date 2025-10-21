@@ -50,6 +50,8 @@ static void lcd_control_motion_menu();
 static void lcd_control_retract_menu();
 static void lcd_sdcard_menu();
 
+static void lcd_cooldown();
+
 static void lcd_quick_feedback();//Cause an LCD refresh, and give the user visual or audiable feedback that something has happend
 
 /* Different types of actions that can be used in menuitems. */
@@ -239,10 +241,13 @@ static void lcd_main_menu()
     if (movesplanned() || IS_SD_PRINTING)
     {
         MENU_ITEM(submenu, MSG_TUNE, lcd_tune_menu);
-    }else{
+    }
+    else
+    {
         MENU_ITEM(submenu, MSG_PREPARE, lcd_prepare_menu);
     }
     MENU_ITEM(submenu, MSG_CONTROL, lcd_control_menu);
+    MENU_ITEM(function, MSG_COOLDOWN, lcd_cooldown);
 #ifdef SDSUPPORT
     if (card.cardOK)
     {
