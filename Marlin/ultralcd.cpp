@@ -14,8 +14,8 @@ int petClearPreheatHPBT;
 int petClearPreheatFanSpeed;
 
 int petGreenPreheatHotendTemp;
-int absPreheatHPBTemp;
-int absPreheatFanSpeed;
+int greenPETPreheatHPBTemp;
+int greenPETPreheatFanSpeed;
 /* !Configuration settings */
 
 //Function pointer to menu functions.
@@ -283,7 +283,7 @@ static void lcd_autostart_sd()
 }
 #endif
 
-void lcd_preheat_pla()
+void lcd_preheat_clear_pet()
 {
     setTargetHotend0(petClearPreheatHotendTemp);
     setTargetHotend1(petClearPreheatHotendTemp);
@@ -294,13 +294,13 @@ void lcd_preheat_pla()
     setWatch(); // heater sanity check timer
 }
 
-void lcd_preheat_abs()
+void lcd_preheat_green_pet()
 {
     setTargetHotend0(petGreenPreheatHotendTemp);
     setTargetHotend1(petGreenPreheatHotendTemp);
     setTargetHotend2(petGreenPreheatHotendTemp);
-    setTargetBed(absPreheatHPBTemp);
-    fanSpeed = absPreheatFanSpeed;
+    setTargetBed(greenPETPreheatHPBTemp);
+    fanSpeed = greenPETPreheatFanSpeed;
     lcd_return_to_status();
     setWatch(); // heater sanity check timer
 }
@@ -347,8 +347,8 @@ static void lcd_prepare_menu()
     MENU_ITEM(gcode, MSG_DISABLE_STEPPERS, PSTR("M84"));
     MENU_ITEM(gcode, MSG_AUTO_HOME, PSTR("G28"));
     //MENU_ITEM(gcode, MSG_SET_ORIGIN, PSTR("G92 X0 Y0 Z0"));
-    MENU_ITEM(function, MSG_PREHEAT_PET_CLEAR, lcd_preheat_pla);
-    MENU_ITEM(function, MSG_PREHEAT_PET_GREEN, lcd_preheat_abs);
+    MENU_ITEM(function, MSG_PREHEAT_PET_CLEAR, lcd_preheat_clear_pet);
+    MENU_ITEM(function, MSG_PREHEAT_PET_GREEN, lcd_preheat_green_pet);
     MENU_ITEM(function, MSG_COOLDOWN, lcd_cooldown);
     MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
     END_MENU();
@@ -566,10 +566,10 @@ static void lcd_control_temperature_preheat_pet_green_settings_menu()
 {
     START_MENU();
     MENU_ITEM(back, MSG_TEMPERATURE, lcd_control_temperature_menu);
-    MENU_ITEM_EDIT(int3, MSG_FAN_SPEED, &absPreheatFanSpeed, 0, 255);
+    MENU_ITEM_EDIT(int3, MSG_FAN_SPEED, &greenPETPreheatFanSpeed, 0, 255);
     MENU_ITEM_EDIT(int3, MSG_NOZZLE, &petGreenPreheatHotendTemp, 0, HEATER_0_MAXTEMP - 15);
 #if TEMP_SENSOR_BED != 0
-    MENU_ITEM_EDIT(int3, MSG_BED, &absPreheatHPBTemp, 0, BED_MAXTEMP - 15);
+    MENU_ITEM_EDIT(int3, MSG_BED, &greenPETPreheatHPBTemp, 0, BED_MAXTEMP - 15);
 #endif
 #ifdef EEPROM_SETTINGS
     MENU_ITEM(function, MSG_STORE_EPROM, Config_StoreSettings);
