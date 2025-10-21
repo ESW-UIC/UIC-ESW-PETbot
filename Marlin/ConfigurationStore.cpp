@@ -59,14 +59,14 @@ void Config_StoreSettings()
   EEPROM_WRITE_VAR(i,add_homeing);
   #ifndef ULTIPANEL
   int petClearPreheatHotendTemp = PET_CLEAR_PREHEAT_HOTEND_TEMP, petClearPreheatHPBT = PET_CLEAR_PREHEAT_HPB_TEMP, petClearPreheatFanSpeed = PET_CLEAR_PREHEAT_FAN_SPEED;
-  int petGreenPreheatHotendTemp = PET_GREEN_PREHEAT_HOTEND_TEMP, absPreheatHPBTemp = PET_GREEN_PREHEAT_HPB_TEMP, absPreheatFanSpeed = PET_GREEN_PREHEAT_FAN_SPEED;
+  int petGreenPreheatHotendTemp = PET_GREEN_PREHEAT_HOTEND_TEMP, greenPETPreheatHPBTemp = PET_GREEN_PREHEAT_HPB_TEMP, greenPETPreheatFanSpeed = PET_GREEN_PREHEAT_FAN_SPEED;
   #endif
   EEPROM_WRITE_VAR(i,petClearPreheatHotendTemp);
   EEPROM_WRITE_VAR(i,petClearPreheatHPBT);
   EEPROM_WRITE_VAR(i,petClearPreheatFanSpeed);
   EEPROM_WRITE_VAR(i,petGreenPreheatHotendTemp);
-  EEPROM_WRITE_VAR(i,absPreheatHPBTemp);
-  EEPROM_WRITE_VAR(i,absPreheatFanSpeed);
+  EEPROM_WRITE_VAR(i,greenPETPreheatHPBTemp);
+  EEPROM_WRITE_VAR(i,greenPETPreheatFanSpeed);
   #ifdef PIDTEMP
     EEPROM_WRITE_VAR(i,Kp);
     EEPROM_WRITE_VAR(i,Ki);
@@ -183,14 +183,14 @@ void Config_RetrieveSettings()
         EEPROM_READ_VAR(i,add_homeing);
         #ifndef ULTIPANEL
         int petClearPreheatHotendTemp, petClearPreheatHPBT, petClearPreheatFanSpeed;
-        int petGreenPreheatHotendTemp, absPreheatHPBTemp, absPreheatFanSpeed;
+        int petGreenPreheatHotendTemp, greenPETPreheatHPBTemp, greenPETPreheatFanSpeed;
         #endif
         EEPROM_READ_VAR(i,petClearPreheatHotendTemp);
         EEPROM_READ_VAR(i,petClearPreheatHPBT);
         EEPROM_READ_VAR(i,petClearPreheatFanSpeed);
         EEPROM_READ_VAR(i,petGreenPreheatHotendTemp);
-        EEPROM_READ_VAR(i,absPreheatHPBTemp);
-        EEPROM_READ_VAR(i,absPreheatFanSpeed);
+        EEPROM_READ_VAR(i,greenPETPreheatHPBTemp);
+        EEPROM_READ_VAR(i,greenPETPreheatFanSpeed);
         #ifndef PIDTEMP
         float Kp,Ki,Kd;
         #endif
@@ -241,8 +241,8 @@ void Config_ResetDefault()
     petClearPreheatHPBT = PET_CLEAR_PREHEAT_HPB_TEMP;
     petClearPreheatFanSpeed = PET_CLEAR_PREHEAT_FAN_SPEED;
     petGreenPreheatHotendTemp = PET_GREEN_PREHEAT_HOTEND_TEMP;
-    absPreheatHPBTemp = PET_GREEN_PREHEAT_HPB_TEMP;
-    absPreheatFanSpeed = PET_GREEN_PREHEAT_FAN_SPEED;
+    greenPETPreheatHPBTemp = PET_GREEN_PREHEAT_HPB_TEMP;
+    greenPETPreheatFanSpeed = PET_GREEN_PREHEAT_FAN_SPEED;
 #endif
 #ifdef PIDTEMP
     Kp = DEFAULT_Kp;

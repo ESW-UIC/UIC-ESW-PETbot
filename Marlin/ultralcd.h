@@ -31,8 +31,8 @@
   extern int petClearPreheatFanSpeed;
 
   extern int petGreenPreheatHotendTemp;
-  extern int absPreheatHPBTemp;
-  extern int absPreheatFanSpeed;
+  extern int greenPETPreheatHPBTemp;
+  extern int greenPETPreheatFanSpeed;
     
   void lcd_buzz(long duration,uint16_t freq);
   bool lcd_clicked();
