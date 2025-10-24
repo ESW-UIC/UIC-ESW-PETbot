@@ -185,6 +185,10 @@
 	#define MSG_ERR_COLD_EXTRUDE_STOP " cold extrusion prevented"
 	#define MSG_ERR_LONG_EXTRUDE_STOP " too long extrusion prevented"
 
+	// PETBot Custom Commands
+	#define MSG_START_SPOOLER "Start Spooler"
+	#define MSG_STOP_SPOOLER "Stop Spooler"
+
 #endif
 
 #endif
