@@ -186,6 +186,7 @@
 	#define MSG_ERR_LONG_EXTRUDE_STOP " too long extrusion prevented"
 
 	// PETBot Custom Commands
+	#define MSG_SPOOLER_CONTROL "Spooler Controls"
 	#define MSG_START_SPOOLER "Start Spooler"
 	#define MSG_STOP_SPOOLER "Stop Spooler"
 
