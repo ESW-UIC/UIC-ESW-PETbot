@@ -50,6 +50,7 @@ static void lcd_control_motion_menu();
 static void lcd_control_retract_menu();
 static void lcd_sdcard_menu();
 
+static void lcd_spooler_control_menu();
 static void lcd_cooldown();
 
 static void lcd_quick_feedback();//Cause an LCD refresh, and give the user visual or audiable feedback that something has happend
@@ -238,6 +239,7 @@ static void lcd_main_menu()
 {
     START_MENU();
     MENU_ITEM(back, MSG_WATCH, lcd_status_screen);
+		MENU_ITEM(submenu, MSG_SPOOLER_CONTROL, lcd_spooler_control_menu);
     if (movesplanned() || IS_SD_PRINTING)
     {
         MENU_ITEM(submenu, MSG_TUNE, lcd_tune_menu);
@@ -346,8 +348,6 @@ static void lcd_prepare_menu()
 #endif
     MENU_ITEM(gcode, MSG_DISABLE_STEPPERS, PSTR("M84"));
     MENU_ITEM(gcode, MSG_AUTO_HOME, PSTR("G28"));
-    // TODO: This value needs to be tuned
-    MENU_ITEM(gcode, MSG_START_SPOOLER, PSTR("G1 Y-900 F2000"));
     //MENU_ITEM(gcode, MSG_SET_ORIGIN, PSTR("G92 X0 Y0 Z0"));
     MENU_ITEM(function, MSG_PREHEAT_PET_CLEAR, lcd_preheat_clear_pet);
     MENU_ITEM(function, MSG_PREHEAT_PET_GREEN, lcd_preheat_green_pet);
