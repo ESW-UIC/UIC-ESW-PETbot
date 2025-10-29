@@ -849,6 +849,16 @@ void lcd_init()
 #endif    
 }
 
+static void start_spooler() {
+    /**
+     * TODO: The current implementation only allows for 8m of fixed movement. 
+     * Movement can be restarted using the menu, but maybe a while loop that runs 
+     * infinitely until the stop button is clicked.
+     *  */
+    enquecommand_P(PSTR("G1 Y-8000 F2000"));
+    enquecommand_P(PSTR("G92 Y0"));
+}
+
 static void stop_spooler() {
 	quickStop();
 	// lcd_return_to_status();
@@ -857,9 +867,7 @@ static void stop_spooler() {
 void lcd_spooler_control_menu() {
 	START_MENU();
 	MENU_ITEM(back, MSG_MAIN, lcd_main_menu);
-	// MENU_ITEM(function, MSG_START_SPOOLER, start_spooler);
-	// TODO: The current implementation only allows for a single spool until the device is restarted. 
-    MENU_ITEM(gcode, MSG_START_SPOOLER, PSTR("G1 Y-8000 F2000"));
+	MENU_ITEM(function, MSG_START_SPOOLER, start_spooler);
 	MENU_ITEM(function, MSG_STOP_SPOOLER, stop_spooler);
 	END_MENU();
 }
