@@ -1051,27 +1051,27 @@ void lcd_buttons_update()
         {
         case encrot0:
             if(lastEncoderBits==encrot3)
-                encoderDiff++;
-            else if(lastEncoderBits==encrot1)
                 encoderDiff--;
+            else if(lastEncoderBits==encrot1)
+                encoderDiff++;
             break;
         case encrot1:
             if(lastEncoderBits==encrot0)
-                encoderDiff++;
-            else if(lastEncoderBits==encrot2)
                 encoderDiff--;
+            else if(lastEncoderBits==encrot2)
+                encoderDiff++;
             break;
         case encrot2:
             if(lastEncoderBits==encrot1)
-                encoderDiff++;
-            else if(lastEncoderBits==encrot3)
                 encoderDiff--;
+            else if(lastEncoderBits==encrot3)
+                encoderDiff++;
             break;
         case encrot3:
             if(lastEncoderBits==encrot2)
-                encoderDiff++;
-            else if(lastEncoderBits==encrot0)
                 encoderDiff--;
+            else if(lastEncoderBits==encrot0)
+                encoderDiff++;
             break;
         }
     }
