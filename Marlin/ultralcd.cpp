@@ -305,6 +305,8 @@ void lcd_preheat_green_pet()
     setTargetHotend2(petGreenPreheatHotendTemp);
     setTargetBed(greenPETPreheatHPBTemp);
     fanSpeed = greenPETPreheatFanSpeed;
+    lcd_setstatus("Preheating Green PET...");  // TODO: Add the message as a constant in language.h
+
     lcd_return_to_status();
     setWatch(); // heater sanity check timer
 }
