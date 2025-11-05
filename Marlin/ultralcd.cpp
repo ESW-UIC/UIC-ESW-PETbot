@@ -292,6 +292,8 @@ void lcd_preheat_clear_pet()
     setTargetHotend2(petClearPreheatHotendTemp);
     setTargetBed(petClearPreheatHPBT);
     fanSpeed = petClearPreheatFanSpeed;
+    lcd_setstatus("Preheating Clear PET");  // TODO: Add the message as a constant in language.h
+    
     lcd_return_to_status();
     setWatch(); // heater sanity check timer
 }
@@ -314,6 +316,7 @@ static void lcd_cooldown()
     setTargetHotend2(0);
     setTargetBed(0);
     lcd_return_to_status();
+    lcd_setstatus(WELCOME_MSG);
 }
 
 static void lcd_tune_menu()
