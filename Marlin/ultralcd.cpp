@@ -860,11 +860,12 @@ static void start_spooler() {
      *  */
     enquecommand_P(PSTR("G1 Y-8000 F2000"));
     enquecommand_P(PSTR("G92 Y0"));
+    lcd_setstatus("Moving Spooler..."); // TODO: Use string constant
 }
 
 static void stop_spooler() {
 	quickStop();
-	// lcd_return_to_status();
+    lcd_setstatus(WELCOME_MSG);
 }
 
 void lcd_spooler_control_menu() {
