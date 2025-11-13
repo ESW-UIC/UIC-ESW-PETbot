@@ -1,3 +1,4 @@
+// ESW logo, shown on the boot screen
 #define START_BMPWIDTH 	60	//Width in pixels
 #define START_BMPHEIGHT 	64	//Height in pixels
 #define START_BMPBYTEWIDTH 	8	//Width in bytes
