@@ -853,20 +853,24 @@ void lcd_init()
     encoderDiff = 0;
 #endif    
 }
+static bool spooler_running = false;
 
-static void start_spooler() {
-    /**
-     * TODO: The current implementation only allows for 8m of fixed movement. 
-     * Movement can be restarted using the menu, but maybe a while loop that runs 
-     * infinitely until the stop button is clicked.
-     *  */
+static bool queue_spooler_move()
+    {
     enquecommand_P(PSTR("G1 Y-8000 F2000"));
     enquecommand_P(PSTR("G92 Y0"));
+    }
+static void start_spooler() {
+    
+    spooler_running = true;
+    queue_spooler_move();
     lcd_setstatus("Moving Spooler..."); // TODO: Use string constant
 }
 
 static void stop_spooler() {
+    spooler_running = false;
 	quickStop();
+    queue_spooler_move();
     lcd_setstatus(WELCOME_MSG);
 }
 
