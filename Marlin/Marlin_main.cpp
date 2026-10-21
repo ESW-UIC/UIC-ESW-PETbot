@@ -883,7 +883,7 @@ void process_commands()
       break;
     }
   }
-
+}
   else if(code_seen('M'))
   {
     switch( (int)code_value() )
