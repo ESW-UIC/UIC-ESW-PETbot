@@ -897,6 +897,7 @@ void lcd_spooler_control_menu() {
 	MENU_ITEM(back, MSG_MAIN, lcd_main_menu);
 	MENU_ITEM(function, MSG_START_SPOOLER, start_spooler);
 	MENU_ITEM(function, MSG_STOP_SPOOLER, stop_spooler);
+    MENU_ITEM_EDIT(int3, MSG_SPEED, &feedmultiply, 10, 999);
 	END_MENU();
 }
 
@@ -905,6 +906,7 @@ static void lcd_cutter_control_menu() {
     MENU_ITEM(back, MSG_MAIN, lcd_main_menu);
     MENU_ITEM(function, MSG_START_CUTTER, start_cutter);
     MENU_ITEM(function, MSG_STOP_CUTTER, stop_cutter);
+    MENU_ITEM_EDIT(int3, MSG_SPEED, &feedmultiply, 10, 999);
     END_MENU();
 }
 
