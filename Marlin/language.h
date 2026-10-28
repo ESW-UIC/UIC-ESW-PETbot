@@ -189,6 +189,9 @@
 	#define MSG_SPOOLER_CONTROL "Spooler Controls"
 	#define MSG_START_SPOOLER "Start Spooler"
 	#define MSG_STOP_SPOOLER "Stop Spooler"
+	#define MSG_CUTTER_CONTROL "Cutter Controls"
+	#define MSG_START_CUTTER "Start Cutter"
+	#define MSG_STOP_CUTTER "Stop Cutter"
 
 #endif
 

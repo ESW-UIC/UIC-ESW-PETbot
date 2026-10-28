@@ -51,6 +51,7 @@ static void lcd_control_retract_menu();
 static void lcd_sdcard_menu();
 
 static void lcd_spooler_control_menu();
+static void lcd_cutter_control_menu();
 static void lcd_cooldown();
 
 static void lcd_quick_feedback();//Cause an LCD refresh, and give the user visual or audiable feedback that something has happend
@@ -240,6 +241,7 @@ static void lcd_main_menu()
     START_MENU();
     MENU_ITEM(back, MSG_WATCH, lcd_status_screen);
 		MENU_ITEM(submenu, MSG_SPOOLER_CONTROL, lcd_spooler_control_menu);
+		MENU_ITEM(submenu, MSG_CUTTER_CONTROL, lcd_cutter_control_menu);
     if (movesplanned() || IS_SD_PRINTING)
     {
         MENU_ITEM(submenu, MSG_TUNE, lcd_tune_menu);
@@ -854,23 +856,39 @@ void lcd_init()
 #endif    
 }
 static bool spooler_running = false;
+static bool cutter_running = false;
 
-static bool queue_spooler_move()
-    {
+static void queue_spooler_move() {
+    enquecommand_P(PSTR("G1 X-8000 F2000"));
+    enquecommand_P(PSTR("G92 X0"));
+}
+
+static void queue_cutter_move() {
     enquecommand_P(PSTR("G1 Y-8000 F2000"));
     enquecommand_P(PSTR("G92 Y0"));
-    }
+}
+
 static void start_spooler() {
-    
     spooler_running = true;
     queue_spooler_move();
-    lcd_setstatus("Moving Spooler..."); // TODO: Use string constant
+    lcd_setstatus("Moving Spooler...");
 }
 
 static void stop_spooler() {
     spooler_running = false;
-	quickStop();
-    queue_spooler_move();
+    quickStop();
+    lcd_setstatus(WELCOME_MSG);
+}
+
+static void start_cutter() {
+    cutter_running = true;
+    queue_cutter_move();
+    lcd_setstatus("Moving Cutter...");
+}
+
+static void stop_cutter() {
+    cutter_running = false;
+    quickStop();
     lcd_setstatus(WELCOME_MSG);
 }
 
@@ -882,9 +900,22 @@ void lcd_spooler_control_menu() {
 	END_MENU();
 }
 
+static void lcd_cutter_control_menu() {
+    START_MENU();
+    MENU_ITEM(back, MSG_MAIN, lcd_main_menu);
+    MENU_ITEM(function, MSG_START_CUTTER, start_cutter);
+    MENU_ITEM(function, MSG_STOP_CUTTER, stop_cutter);
+    END_MENU();
+}
+
 void lcd_update()
 {
     static unsigned long timeoutToStatus = 0;
+
+    if (spooler_running && !movesplanned())
+        queue_spooler_move();
+    if (cutter_running && !movesplanned())
+        queue_cutter_move();
     
     lcd_buttons_update();
     
